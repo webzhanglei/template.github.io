@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width =  device-width,user-scalable = no,initial-scale= 1.0,
+			maximum-scale = 1.0"/>	
+	<title>注册页</title>
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+	<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<style>
+	.boss{
+		text-align: center;
+		margin: 0 auto;
+		max-width: 500px;
+		background: #F0F8FF;
+		font-family: "Microsoft YaHei";
+		}
+		.div1{background:#FF0099;color: #ffffff;padding-bottom: 10px;}
+		.glyphicon{text-align: left;width: 40%;font-size: 30px;color: #ffffff}
+		.glyphicon:hover{color: #ffffff;text-decoration: none;}
+		.h2{display: inline-block;width: 50%;font-size: 35px;text-align: left;}
+		#password,#confirmPassword,#name{margin-top: 30px;width: 90%;height: 80px;border-radius: 10px;font-size: 16px;}
+		.div2{width: 90%;margin-top: 50px;margin-bottom: 50px;}
+		p{text-align: left;display: inline;font-size: 16px;color:#FF0099; }
+		#button{width: 90%;height: 80px;font-size: 30px;background:#FF0099;border-radius: 10px;
+		margin-bottom:20px;color: #ffffff }
+		
+	</style>
+	
+</head>
+<body>
+	<div class="boss">
+		<div class="div1" >
+		<a href="" class='glyphicon glyphicon-chevron-left'></a>
+		<h2 class="h2">注册</h2></div>
+		<input type="text" id="name" placeholder="账户名称："><br>
+		<input type="password" id="password" placeholder="登陆密码："><br>
+		<input type="password" id="confirmPassword" placeholder="确认密码："><br>
+		<div class="div2">
+			<input type="checkbox" id="checkbox">
+			<p>我已阅读并接受走秀网服务条款</p>
+		</div>
+		<button id="button">注册</button>
+	</div>
+
+</body>
+	<script>
+		$(function () {
+			
+			$('#button').on('click',function(){
+				var order ={
+				status:'register',	
+				userID:$('#name').val(),
+				password:$('password').val(),
+				pw:$('confirmPassword').val()
+			}
+			$.ajax({
+				type:'POST',
+				url:'http://datainfo.duapp.com/shopdata/userinfo.php',
+				data:order,
+
+				success:function(data){
+					var a = data;
+					if (password==='pw'){
+					alert("密码不一样，请重新输入")
+				}
+					if (data=='1') {
+						alert("注册成功");
+					}else if (data=='2') {
+						alert('数据库报错')
+					}else if(data=='0'){
+						alert('用户名重名')
+					}
+				}
+			})
+			})
+			
+
+
+
+
+
+		})
+
+
+
+
+
+
+
+	</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
